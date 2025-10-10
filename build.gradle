@@ -1,0 +1,27 @@
+plugins {
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'RuyiBang'
+version = '1.0-SNAPSHOT'
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+dependencyManagement {
+    imports {
+        // Centralized Spring Boot versions
+        mavenBom "org.springframework.boot:spring-boot-dependencies:3.3.5"
+    }
+
+dependencies {
+    // Centralized library versions
+    dependency "io.jsonwebtoken:jjwt-api:0.12.6"
+    dependency "io.jsonwebtoken:jjwt-impl:0.12.6"
+    dependency "io.jsonwebtoken:jjwt-jackson:0.12.6"
+    dependency "org.postgresql:postgresql:42.6.0"
+}
+}
