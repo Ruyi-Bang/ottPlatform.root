@@ -1,28 +1,47 @@
 plugins {
-    id 'io.spring.dependency-management' version '1.1.7'
+    id 'java-platform'
+    id 'maven-publish'
 }
 
 group = 'RuyiBang'
-version = '1.0-SNAPSHOT'
+version = '1.0.X'
+
+// Define dependency and plugin versions centrally
+javaPlatform {
+    allowDependencies()
+}
 
 allprojects {
     repositories {
+        mavenLocal()
         mavenCentral()
     }
-}
-
-dependencyManagement {
-    imports {
-        // Centralized Spring Boot versions
-        mavenBom "org.springframework.boot:spring-boot-dependencies:3.3.5"
+    plugins.withId("java") {
+        java {
+            toolchain {
+                languageVersion = JavaLanguageVersion.of(21)
+            }
+        }
     }
+}
 
 dependencies {
-    // Centralized library versions
-    dependency "io.jsonwebtoken:jjwt-api:0.12.6"
-    dependency "io.jsonwebtoken:jjwt-impl:0.12.6"
-    dependency "io.jsonwebtoken:jjwt-jackson:0.12.6"
-    dependency "org.postgresql:postgresql:42.6.0"
-    dependency "org.projectlombok:lombok:1.18.34"
+    // Import BOMs
+    api platform("org.springframework.boot:spring-boot-dependencies:${libs.versions.springBoot.get()}")
+
+    // Example managed libs
+    constraints {
+        api "io.jsonwebtoken:jjwt-api:${libs.versions.jjwt.get()}"
+        api "io.jsonwebtoken:jjwt-impl:${libs.versions.jjwt.get()}"
+        api "io.jsonwebtoken:jjwt-jackson:${libs.versions.jjwt.get()}"
+        api "org.postgresql:postgresql:${libs.versions.postgres.get()}"
+    }
 }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.javaPlatform
+        }
+    }
 }

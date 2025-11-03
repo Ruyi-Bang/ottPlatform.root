@@ -2,17 +2,24 @@
 
 pluginManagement {
     // Define centralized plugin versions
-    plugins {
-        id "org.springframework.boot" version "3.3.5"
-        id "io.spring.dependency-management" version "1.1.6"
-        id "java" version "1.10"  // optional, standard java plugin
-    }
-
     repositories {
         gradlePluginPortal()
         mavenCentral()
+        mavenLocal()
+
+    }
+}
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+    versionCatalogs {
+        libs {
+            from("RuyiBang:ottPlatform.sharedLibraryVersions:1.0.X")
+        }
     }
 }
 
-rootProject.name = 'ottPlatform.root'
+rootProject.name = 'ottPlarform.root'
 
