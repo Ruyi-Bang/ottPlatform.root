@@ -35,6 +35,9 @@ dependencies {
         api "io.jsonwebtoken:jjwt-impl:${libs.versions.jjwt.get()}"
         api "io.jsonwebtoken:jjwt-jackson:${libs.versions.jjwt.get()}"
         api "org.postgresql:postgresql:${libs.versions.postgres.get()}"
+        api "ch.qos.logback:logback-classic:${libs.versions.logback.get()}"
+        api "ch.qos.logback:logback-core:${libs.versions.logback.get()}"
+        api "net.logstash.logback:logstash-logback-encoder:${libs.versions.logstashEncoder.get()}"
     }
 }
 
