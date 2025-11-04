@@ -16,11 +16,17 @@ allprojects {
         mavenLocal()
         mavenCentral()
     }
-    plugins.withId("java") {
+}
+
+subprojects {
+    // Only run when the Java plugin is applied in that subproject
+    plugins.withType(JavaPlugin) {
         java {
             toolchain {
                 languageVersion = JavaLanguageVersion.of(21)
             }
+            withSourcesJar()
+            withJavadocJar()
         }
     }
 }
@@ -38,7 +44,6 @@ dependencies {
         api "ch.qos.logback:logback-classic:${libs.versions.logback.get()}"
         api "ch.qos.logback:logback-core:${libs.versions.logback.get()}"
         api "net.logstash.logback:logstash-logback-encoder:${libs.versions.logstashEncoder.get()}"
-        api "org.projectlombok:lombok:${libs.versions.lombok.get()}"
     }
 }
 
