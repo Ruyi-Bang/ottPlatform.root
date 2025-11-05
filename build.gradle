@@ -44,6 +44,7 @@ dependencies {
         api "ch.qos.logback:logback-classic:${libs.versions.logback.get()}"
         api "ch.qos.logback:logback-core:${libs.versions.logback.get()}"
         api "net.logstash.logback:logstash-logback-encoder:${libs.versions.logstashEncoder.get()}"
+        api "org.apache.commons:commons-lang3:${libs.versions.apacheLang.get()}"
     }
 }
 
