@@ -1,25 +1,2 @@
-
-
-pluginManagement {
-    // Define centralized plugin versions
-    repositories {
-        gradlePluginPortal()
-        mavenCentral()
-        mavenLocal()
-
-    }
-}
-dependencyResolutionManagement {
-    repositories {
-        mavenCentral()
-        mavenLocal()
-    }
-    versionCatalogs {
-        libs {
-            from("org.ruyibang:ottplatform.sharedlibraryversions:0.3")
-        }
-    }
-}
-
 rootProject.name = 'ottPlatform.root'
 
