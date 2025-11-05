@@ -3,8 +3,8 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'RuyiBang'
-version = '1.0.X'
+group = 'org.ruyibang'
+version = (findProperty("projectVersion") ?: "0.0-SNAPSHOT")
 
 // Define dependency and plugin versions centrally
 javaPlatform {
@@ -52,6 +52,21 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.javaPlatform
+
+            groupId = 'org.ruyibang'
+            artifactId = 'ottplatform.root'   // <<< change: no dots
+            version = project.version
+        }
+    }
+    repositories {
+        // mavenLocal()   // optional; you can remove it for CI
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/Ruyi-Bang/packages")
+            credentials {
+                username = findProperty("githubUsername") ?: System.getenv("GPR_USER")
+                password = findProperty("githubToken")    ?: System.getenv("GPR_KEY")
+            }
         }
     }
 }

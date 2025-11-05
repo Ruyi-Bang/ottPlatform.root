@@ -16,7 +16,7 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         libs {
-            from("RuyiBang:ottPlatform.sharedLibraryVersions:1.0.X")
+            from("org.ruyibang:ottplatform.sharedlibraryversions:0.3")
         }
     }
 }
